@@ -1,0 +1,143 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .overlay {
+    align-items: center;
+    padding: var(--spacing-lg);
+  }
+}
+
+.modal {
+  background: white;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: var(--spacing-xl);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    border-radius: var(--radius-lg);
+  }
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--spacing-lg);
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--rose-900);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
+}
+
+.message {
+  color: var(--rose-500);
+  margin-bottom: var(--spacing-xl);
+}
+
+.orderSummary {
+  background: var(--rose-50);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--rose-100);
+}
+
+.item:last-of-type {
+  border-bottom: none;
+  margin-bottom: var(--spacing-lg);
+}
+
+.thumbnail {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.itemInfo {
+  flex: 1;
+}
+
+.itemName {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--rose-900);
+  margin-bottom: 0.25rem;
+}
+
+.itemDetails {
+  display: flex;
+  gap: var(--spacing-sm);
+  font-size: 0.875rem;
+}
+
+.quantity {
+  color: var(--color-red);
+  font-weight: var(--font-weight-semibold);
+}
+
+.unitPrice {
+  color: var(--rose-500);
+}
+
+.itemTotal {
+  font-weight: var(--font-weight-semibold);
+  color: var(--rose-900);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-lg);
+}
+
+.totalLabel {
+  color: var(--rose-900);
+  font-size: 0.875rem;
+}
+
+.totalAmount {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--rose-900);
+}
+
+.newOrderButton {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: var(--color-red);
+  color: white;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  transition: background 0.2s ease;
+}
+
+.newOrderButton:hover {
+  background: hsl(14, 86%, 35%);
+}

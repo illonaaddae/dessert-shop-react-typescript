@@ -1,0 +1,16 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 1024px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--spacing-xl) 2rem;
+    align-items: start;
+  }
+}
