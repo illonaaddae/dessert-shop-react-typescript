@@ -1,0 +1,85 @@
+.cart {
+  background: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-md);
+  height: fit-content;
+  position: sticky;
+  top: var(--spacing-lg);
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-red);
+  margin-bottom: var(--spacing-lg);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) 0;
+}
+
+.emptyImage {
+  width: 128px;
+  margin-bottom: var(--spacing-md);
+}
+
+.emptyText {
+  color: var(--rose-500);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
+
+.items {
+  margin-bottom: var(--spacing-lg);
+}
+
+.totalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg) 0;
+}
+
+.totalLabel {
+  font-size: 0.875rem;
+  color: var(--rose-900);
+}
+
+.totalAmount {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--rose-900);
+}
+
+.carbonNeutral {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--rose-50);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.875rem;
+  color: var(--rose-900);
+}
+
+.confirmButton {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: var(--color-red);
+  color: white;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  transition: background 0.2s ease;
+}
+
+.confirmButton:hover {
+  background: hsl(14, 86%, 35%);
+}
