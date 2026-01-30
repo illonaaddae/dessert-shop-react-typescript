@@ -29,3 +29,4 @@ export const CartItemComponent = ({ item, onRemove }: CartItemProps) => {
     </div>
   );
 };
+
