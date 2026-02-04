@@ -1,27 +1,25 @@
-import { CartItem } from '../../types/dessert';
+import { memo } from 'react';
 import { CartItemComponent } from '../CartItem/CartItem';
+import { useCart } from '../../hooks/useCart';
 import styles from './Cart.module.css';
 
-interface CartProps {
-  cart: CartItem[];
-  total: number;
-  itemCount: number;
-  onRemoveItem: (name: string) => void;
-  onConfirmOrder: () => void;
-}
+/**
+ * Cart component displaying cart items and order summary
+ * Wrapped with React.memo to prevent unnecessary re-renders
+ */
+export const Cart = memo(function Cart() {
+  // Access all cart data and operations from context
+  const { cart, getTotal, getItemCount, removeFromCart, confirmOrder } = useCart();
 
-export const Cart = ({
-  cart,
-  total,
-  itemCount,
-  onRemoveItem,
-  onConfirmOrder,
-}: CartProps) => {
+  const total = getTotal();
+  const itemCount = getItemCount();
   const isEmpty = cart.length === 0;
 
   return (
     <aside className={styles.cart}>
-      <h2 className={styles.heading}>Your Cart ({itemCount})</h2>
+      <h2 className={styles.heading} aria-live="polite" aria-atomic="true">
+        Your Cart ({itemCount})
+      </h2>
 
       {isEmpty ? (
         <div className={styles.empty}>
@@ -39,7 +37,7 @@ export const Cart = ({
               <CartItemComponent
                 key={item.name}
                 item={item}
-                onRemove={() => onRemoveItem(item.name)}
+                onRemove={() => removeFromCart(item.name)}
               />
             ))}
           </div>
@@ -56,11 +54,11 @@ export const Cart = ({
             </p>
           </div>
 
-          <button className={styles.confirmButton} onClick={onConfirmOrder}>
+          <button className={styles.confirmButton} onClick={confirmOrder}>
             Confirm Order
           </button>
         </>
       )}
     </aside>
   );
-};
+});

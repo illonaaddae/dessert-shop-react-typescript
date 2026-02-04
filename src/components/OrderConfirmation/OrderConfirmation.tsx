@@ -1,27 +1,38 @@
 import React from 'react';
-import { CartItem } from '../../types/dessert';
+import { useCart } from '../../hooks/useCart';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
 import styles from './OrderConfirmation.module.css';
 
-interface OrderConfirmationProps {
-  cart: CartItem[];
-  total: number;
-  onStartNewOrder: () => void;
-}
+export const OrderConfirmation: React.FC = () => {
+  // Access cart data and operations from context
+  const { cart, getTotal, clearCart } = useCart();
+  const total = getTotal();
 
-export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
-  cart,
-  total,
-  onStartNewOrder,
-}) => {
+  // Focus trap for modal accessibility
+  const modalRef = useFocusTrap({
+    isActive: true,
+    onEscape: clearCart,
+  });
+
   return (
-    <div className={styles.overlay} onClick={onStartNewOrder}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <div 
+      className={styles.overlay} 
+      onClick={clearCart}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="order-confirmed-heading"
+    >
+      <div 
+        className={styles.modal} 
+        onClick={(e) => e.stopPropagation()}
+        ref={modalRef as React.RefObject<HTMLDivElement>}
+      >
         <img
           src="/assets/images/icon-order-confirmed.svg"
           alt=""
           className={styles.icon}
         />
-        <h2 className={styles.heading}>Order Confirmed</h2>
+        <h2 className={styles.heading} id="order-confirmed-heading">Order Confirmed</h2>
         <p className={styles.message}>We hope you enjoy your food!</p>
 
         <div className={styles.orderSummary}>
@@ -53,7 +64,7 @@ export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
           </div>
         </div>
 
-        <button className={styles.newOrderButton} onClick={onStartNewOrder}>
+        <button className={styles.newOrderButton} onClick={clearCart}>
           Start New Order
         </button>
       </div>
