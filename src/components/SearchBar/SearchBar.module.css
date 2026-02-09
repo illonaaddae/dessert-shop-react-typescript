@@ -1,0 +1,66 @@
+.searchBar {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  padding-right: 3rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid hsl(14, 25%, 72%);
+  border-radius: 0.5rem;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: hsl(14, 86%, 42%);
+  box-shadow: 0 0 0 3px hsla(14, 86%, 42%, 0.1);
+}
+
+.searchInput::placeholder {
+  color: hsl(12, 20%, 44%);
+}
+
+.searchWrapper {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: hsl(12, 20%, 44%);
+  pointer-events: none;
+}
+
+.clearButton {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: hsl(12, 20%, 44%);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.clearButton:hover {
+  background-color: hsl(14, 25%, 92%);
+  color: hsl(14, 86%, 42%);
+}
+
+.clearButton:focus {
+  outline: 2px solid hsl(14, 86%, 42%);
+  outline-offset: 2px;
+}

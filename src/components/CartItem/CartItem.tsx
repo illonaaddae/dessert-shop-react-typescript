@@ -1,3 +1,4 @@
+import React from 'react';
 import { CartItem } from '../../types/dessert';
 import styles from './CartItem.module.css';
 
@@ -6,7 +7,9 @@ interface CartItemProps {
   onRemove: () => void;
 }
 
-export const CartItemComponent = ({ item, onRemove }: CartItemProps) => {
+// Wrap component with React.memo for performance optimization
+// This prevents re-renders when other cart items change
+export const CartItemComponent = React.memo(({ item, onRemove }: CartItemProps) => {
   const itemTotal = item.price * item.quantity;
 
   return (
@@ -28,5 +31,7 @@ export const CartItemComponent = ({ item, onRemove }: CartItemProps) => {
       </button>
     </div>
   );
-};
+});
 
+// Display name for debugging
+CartItemComponent.displayName = 'CartItemComponent';

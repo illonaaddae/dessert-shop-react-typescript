@@ -1,0 +1,204 @@
+.filterBar {
+  margin-bottom: 2rem;
+}
+
+.favoritesToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: 2px solid hsl(14, 25%, 72%);
+  border-radius: 2rem;
+  background-color: white;
+  color: hsl(14, 65%, 9%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.favoritesToggle:hover {
+  border-color: hsl(14, 86%, 42%);
+  background-color: hsl(14, 86%, 97%);
+}
+
+.favoritesToggle:focus {
+  outline: 2px solid hsl(14, 86%, 42%);
+  outline-offset: 2px;
+}
+
+.favoritesToggle.active {
+  background-color: hsl(14, 86%, 42%);
+  border-color: hsl(14, 86%, 42%);
+  color: white;
+}
+
+.favoritesToggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.favoritesCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: white;
+  color: hsl(14, 86%, 42%);
+  border-radius: 1rem;
+}
+
+.favoritesToggle.active .favoritesCount {
+  background-color: hsl(14, 65%, 9%);
+  color: white;
+}
+
+.filterSection {
+  margin-bottom: 1.5rem;
+}
+
+.filterLabel {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: hsl(14, 65%, 9%);
+  margin-bottom: 0.5rem;
+}
+
+.categoryButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.categoryButton {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: 2px solid hsl(14, 25%, 72%);
+  border-radius: 2rem;
+  background-color: white;
+  color: hsl(14, 65%, 9%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.categoryButton:hover {
+  border-color: hsl(14, 86%, 42%);
+  background-color: hsl(14, 86%, 97%);
+}
+
+.categoryButton:focus {
+  outline: 2px solid hsl(14, 86%, 42%);
+  outline-offset: 2px;
+}
+
+.categoryButton.active {
+  background-color: hsl(14, 86%, 42%);
+  border-color: hsl(14, 86%, 42%);
+  color: white;
+}
+
+.priceRange {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.priceInput {
+  flex: 1;
+}
+
+.priceInputLabel {
+  display: block;
+  font-size: 0.75rem;
+  color: hsl(12, 20%, 44%);
+  margin-bottom: 0.25rem;
+}
+
+.priceInputField {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  border: 2px solid hsl(14, 25%, 72%);
+  border-radius: 0.375rem;
+  background-color: white;
+}
+
+.priceInputField:focus {
+  outline: none;
+  border-color: hsl(14, 86%, 42%);
+  box-shadow: 0 0 0 3px hsla(14, 86%, 42%, 0.1);
+}
+
+.filterActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.clearButton {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: 2px solid hsl(14, 25%, 72%);
+  border-radius: 0.5rem;
+  background-color: white;
+  color: hsl(14, 65%, 9%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clearButton:hover {
+  border-color: hsl(14, 86%, 42%);
+  background-color: hsl(14, 86%, 97%);
+}
+
+.clearButton:focus {
+  outline: 2px solid hsl(14, 86%, 42%);
+  outline-offset: 2px;
+}
+
+.clearButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.activeFiltersCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: hsl(14, 86%, 42%);
+  color: white;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .categoryButtons {
+    gap: 0.375rem;
+  }
+
+  .categoryButton {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .priceRange {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
