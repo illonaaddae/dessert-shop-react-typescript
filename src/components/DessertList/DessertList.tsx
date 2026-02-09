@@ -1,7 +1,10 @@
+import { memo, useCallback } from 'react';
 import { Dessert } from '../../types/dessert';
 import { DessertCard } from '../DessertCard/DessertCard';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { FilterBar } from '../FilterBar/FilterBar';
+import { Button } from '../Button/Button';
+import { Typography } from '../Typography/Typography';
 import { useCart } from '../../hooks/useCart';
 import { useFavorites } from '../../context/FavoritesContext';
 import { useFilters } from '../../hooks/useFilters';
@@ -11,7 +14,7 @@ interface DessertListProps {
   desserts: Dessert[];
 }
 
-export const DessertList = ({ desserts }: DessertListProps) => {
+export const DessertList = memo(function DessertList({ desserts }: DessertListProps) {
   // Access cart from context
   const { cart } = useCart();
 
@@ -31,13 +34,16 @@ export const DessertList = ({ desserts }: DessertListProps) => {
     hasActiveFilters,
   } = useFilters(desserts, favorites);
 
-  const getCartItem = (dessertName: string) => {
+  // Memoize cart item lookup for performance
+  const getCartItem = useCallback((dessertName: string) => {
     return cart.find((item) => item.name === dessertName);
-  };
+  }, [cart]);
 
   return (
     <section className={styles.section}>
-      <h1 className={styles.heading}>Desserts</h1>
+      <Typography variant="h1" color="primary" className={styles.heading}>
+        Desserts
+      </Typography>
 
       {/* Search Bar */}
       <SearchBar value={filters.searchQuery} onChange={setSearchQuery} />
@@ -58,9 +64,16 @@ export const DessertList = ({ desserts }: DessertListProps) => {
       />
 
       {/* Results count */}
-      <p className={styles.resultsCount} role="status" aria-live="polite" aria-atomic="true">
+      <Typography 
+        variant="caption" 
+        color="secondary" 
+        className={styles.resultsCount}
+        role="status" 
+        aria-live="polite" 
+        aria-atomic="true"
+      >
         {filteredDesserts.length} {filteredDesserts.length === 1 ? 'dessert' : 'desserts'} found
-      </p>
+      </Typography>
 
       {/* Dessert Grid */}
       {filteredDesserts.length > 0 ? (
@@ -95,17 +108,19 @@ export const DessertList = ({ desserts }: DessertListProps) => {
               strokeLinejoin="round"
             />
           </svg>
-          <h2 className={styles.emptyHeading}>No desserts found</h2>
-          <p className={styles.emptyText}>
+          <Typography variant="h2" color="primary" className={styles.emptyHeading}>
+            No desserts found
+          </Typography>
+          <Typography variant="body" color="secondary" className={styles.emptyText}>
             Try adjusting your search or filters to find what you're looking for.
-          </p>
+          </Typography>
           {hasActiveFilters && (
-            <button className={styles.emptyButton} onClick={clearFilters} type="button">
+            <Button variant="outlined" onClick={clearFilters} className={styles.emptyButton}>
               Clear all filters
-            </button>
+            </Button>
           )}
         </div>
       )}
     </section>
   );
-};
+});

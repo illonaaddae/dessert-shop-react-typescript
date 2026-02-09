@@ -1,6 +1,8 @@
 import React from 'react';
 import { useCart } from '../../hooks/useCart';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
+import { Button } from '../Button/Button';
+import { Typography } from '../Typography/Typography';
 import styles from './OrderConfirmation.module.css';
 
 export const OrderConfirmation: React.FC = () => {
@@ -32,8 +34,12 @@ export const OrderConfirmation: React.FC = () => {
           alt=""
           className={styles.icon}
         />
-        <h2 className={styles.heading} id="order-confirmed-heading">Order Confirmed</h2>
-        <p className={styles.message}>We hope you enjoy your food!</p>
+        <Typography variant="h2" color="primary" className={styles.heading} id="order-confirmed-heading">
+          Order Confirmed
+        </Typography>
+        <Typography variant="caption" color="secondary" className={styles.message}>
+          We hope you enjoy your food!
+        </Typography>
 
         <div className={styles.orderSummary}>
           {cart.map((item) => (
@@ -44,29 +50,37 @@ export const OrderConfirmation: React.FC = () => {
                 className={styles.thumbnail}
               />
               <div className={styles.itemInfo}>
-                <h4 className={styles.itemName}>{item.name}</h4>
+                <Typography variant="h4" color="primary" className={styles.itemName}>
+                  {item.name}
+                </Typography>
                 <div className={styles.itemDetails}>
-                  <span className={styles.quantity}>{item.quantity}x</span>
-                  <span className={styles.unitPrice}>
+                  <Typography variant="caption" color="accent" weight="semibold" className={styles.quantity}>
+                    {item.quantity}x
+                  </Typography>
+                  <Typography variant="caption" color="secondary" className={styles.unitPrice}>
                     @ ${item.price.toFixed(2)}
-                  </span>
+                  </Typography>
                 </div>
               </div>
-              <span className={styles.itemTotal}>
+              <Typography variant="body" color="primary" weight="semibold" className={styles.itemTotal}>
                 ${(item.price * item.quantity).toFixed(2)}
-              </span>
+              </Typography>
             </div>
           ))}
 
           <div className={styles.totalRow}>
-            <span className={styles.totalLabel}>Order Total</span>
-            <span className={styles.totalAmount}>${total.toFixed(2)}</span>
+            <Typography variant="body" color="primary" className={styles.totalLabel}>
+              Order Total
+            </Typography>
+            <Typography variant="h3" color="primary" className={styles.totalAmount}>
+              ${total.toFixed(2)}
+            </Typography>
           </div>
         </div>
 
-        <button className={styles.newOrderButton} onClick={clearCart}>
+        <Button variant="primary" onClick={clearCart} className={styles.newOrderButton}>
           Start New Order
-        </button>
+        </Button>
       </div>
     </div>
   );

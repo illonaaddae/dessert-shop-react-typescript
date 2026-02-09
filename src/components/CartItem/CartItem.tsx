@@ -1,5 +1,7 @@
 import React from 'react';
 import { CartItem } from '../../types/dessert';
+import { Button } from '../Button/Button';
+import { Typography } from '../Typography/Typography';
 import styles from './CartItem.module.css';
 
 interface CartItemProps {
@@ -15,20 +17,27 @@ export const CartItemComponent = React.memo(({ item, onRemove }: CartItemProps) 
   return (
     <div className={styles.item}>
       <div className={styles.info}>
-        <h4 className={styles.name}>{item.name}</h4>
+        <Typography variant="h4" color="primary" className={styles.name}>
+          {item.name}
+        </Typography>
         <div className={styles.details}>
-          <span className={styles.quantity}>{item.quantity}x</span>
-          <span className={styles.unitPrice}>@ ${item.price.toFixed(2)}</span>
-          <span className={styles.total}>${itemTotal.toFixed(2)}</span>
+          <Typography variant="caption" color="accent" weight="semibold" className={styles.quantity}>
+            {item.quantity}x
+          </Typography>
+          <Typography variant="caption" color="secondary" className={styles.unitPrice}>
+            @ ${item.price.toFixed(2)}
+          </Typography>
+          <Typography variant="caption" color="primary" weight="semibold" className={styles.total}>
+            ${itemTotal.toFixed(2)}
+          </Typography>
         </div>
       </div>
-      <button
-        className={styles.removeButton}
+      <Button
+        variant="ghost"
         onClick={onRemove}
-        aria-label={`Remove ${item.name} from cart`}
-      >
-        <img src="/assets/images/icon-remove-item.svg" alt="" />
-      </button>
+        ariaLabel={`Remove ${item.name} from cart`}
+        icon={<img src="/assets/images/icon-remove-item.svg" alt="" />}
+      />
     </div>
   );
 });

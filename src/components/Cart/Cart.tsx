@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { CartItemComponent } from '../CartItem/CartItem';
 import { useCart } from '../../hooks/useCart';
+import { Button } from '../Button/Button';
+import { Typography } from '../Typography/Typography';
 import styles from './Cart.module.css';
 
 /**
@@ -17,9 +19,15 @@ export const Cart = memo(function Cart() {
 
   return (
     <aside className={styles.cart}>
-      <h2 className={styles.heading} aria-live="polite" aria-atomic="true">
+      <Typography 
+        variant="h2" 
+        color="accent" 
+        className={styles.heading} 
+        aria-live="polite" 
+        aria-atomic="true"
+      >
         Your Cart ({itemCount})
-      </h2>
+      </Typography>
 
       {isEmpty ? (
         <div className={styles.empty}>
@@ -28,7 +36,9 @@ export const Cart = memo(function Cart() {
             alt="Empty cart"
             className={styles.emptyImage}
           />
-          <p className={styles.emptyText}>Your added items will appear here</p>
+          <Typography variant="caption" color="secondary" className={styles.emptyText}>
+            Your added items will appear here
+          </Typography>
         </div>
       ) : (
         <>
@@ -43,20 +53,24 @@ export const Cart = memo(function Cart() {
           </div>
 
           <div className={styles.totalRow}>
-            <span className={styles.totalLabel}>Order Total</span>
-            <span className={styles.totalAmount}>${total.toFixed(2)}</span>
+            <Typography variant="body" color="primary" className={styles.totalLabel}>
+              Order Total
+            </Typography>
+            <Typography variant="h3" color="primary" className={styles.totalAmount}>
+              ${total.toFixed(2)}
+            </Typography>
           </div>
 
           <div className={styles.carbonNeutral}>
             <img src="/assets/images/icon-carbon-neutral.svg" alt="" />
-            <p>
+            <Typography variant="caption" color="primary">
               This is a <strong>carbon-neutral</strong> delivery
-            </p>
+            </Typography>
           </div>
 
-          <button className={styles.confirmButton} onClick={confirmOrder}>
+          <Button variant="primary" onClick={confirmOrder} className={styles.confirmButton}>
             Confirm Order
-          </button>
+          </Button>
         </>
       )}
     </aside>
