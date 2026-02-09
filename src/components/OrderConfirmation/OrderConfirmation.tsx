@@ -11,22 +11,20 @@ export const OrderConfirmation: React.FC = () => {
   const total = getTotal();
 
   // Focus trap for modal accessibility
+  // Note: No onEscape handler - user must click "Start New Order" to close modal
   const modalRef = useFocusTrap({
     isActive: true,
-    onEscape: clearCart,
   });
 
   return (
     <div 
       className={styles.overlay} 
-      onClick={clearCart}
       role="dialog"
       aria-modal="true"
       aria-labelledby="order-confirmed-heading"
     >
       <div 
         className={styles.modal} 
-        onClick={(e) => e.stopPropagation()}
         ref={modalRef as React.RefObject<HTMLDivElement>}
       >
         <img
