@@ -1,4 +1,5 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo, useCallback } from 'react';
+import { Button } from '../Button/Button';
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
@@ -29,10 +30,11 @@ export const SearchBar = memo(function SearchBar({ value, onChange, placeholder 
     setLocalValue(value);
   }, [value]);
 
-  const handleClear = () => {
+  // Memoize clear handler for performance
+  const handleClear = useCallback(() => {
     setLocalValue('');
     onChange('');
-  };
+  }, [onChange]);
 
   return (
     <div className={styles.searchBar}>
@@ -46,22 +48,23 @@ export const SearchBar = memo(function SearchBar({ value, onChange, placeholder 
           aria-label="Search desserts"
         />
         {localValue ? (
-          <button
-            className={styles.clearButton}
+          <Button
+            variant="ghost"
             onClick={handleClear}
-            aria-label="Clear search"
-            type="button"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M12 4L4 12M4 4L12 12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+            ariaLabel="Clear search"
+            className={styles.clearButton}
+            icon={
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 4L4 12M4 4L12 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            }
+          />
         ) : (
           <span className={styles.searchIcon}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

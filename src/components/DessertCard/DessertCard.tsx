@@ -2,6 +2,8 @@ import React from 'react';
 import { Dessert } from '../../types/dessert';
 import { useCart } from '../../hooks/useCart';
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
+import { Button } from '../Button/Button';
+import { Typography } from '../Typography/Typography';
 import styles from './DessertCard.module.css';
 
 interface DessertCardProps {
@@ -41,37 +43,45 @@ export const DessertCard = React.memo(({
         </picture>
 
         {!isInCart ? (
-          <button className={styles.addButton} onClick={() => addToCart(dessert)}>
-            <img src="/assets/images/icon-add-to-cart.svg" alt="" />
+          <Button
+            variant="outlined"
+            onClick={() => addToCart(dessert)}
+            className={styles.addButton}
+            icon={<img src="/assets/images/icon-add-to-cart.svg" alt="" />}
+          >
             Add to Cart
-          </button>
+          </Button>
         ) : (
           <div className={styles.quantityControls}>
-            <button
-              className={styles.quantityButton}
+            <Button
+              variant="icon"
               onClick={() => updateQuantity(name, quantity - 1)}
-              aria-label="Decrease quantity"
-            >
-              <img src="/assets/images/icon-decrement-quantity.svg" alt="" />
-            </button>
-            <span className={styles.quantity}>{quantity}</span>
-            <button
-              className={styles.quantityButton}
+              ariaLabel="Decrease quantity"
+              icon={<img src="/assets/images/icon-decrement-quantity.svg" alt="" />}
+            />
+            <Typography variant="body" color="inherit" className={styles.quantity}>
+              {quantity}
+            </Typography>
+            <Button
+              variant="icon"
               onClick={() => updateQuantity(name, quantity + 1)}
-              aria-label="Increase quantity"
-            >
-              <img src="/assets/images/icon-increment-quantity.svg" alt="" />
-            </button>
+              ariaLabel="Increase quantity"
+              icon={<img src="/assets/images/icon-increment-quantity.svg" alt="" />}
+            />
           </div>
         )}
       </div>
 
       <div className={styles.content}>
-        <p className={styles.category}>{category || 'Dessert'}</p>
-        <h3 className={styles.name}>{name || 'Unnamed Dessert'}</h3>
-        <p className={styles.price}>
+        <Typography variant="caption" color="secondary" className={styles.category}>
+          {category || 'Dessert'}
+        </Typography>
+        <Typography variant="h3" color="primary" className={styles.name}>
+          {name || 'Unnamed Dessert'}
+        </Typography>
+        <Typography variant="price" color="accent" className={styles.price}>
           {price ? `$${price.toFixed(2)}` : 'Price unavailable'}
-        </p>
+        </Typography>
       </div>
     </article>
   );

@@ -1,0 +1,118 @@
+/* Base Button Styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  font-family: inherit;
+  font-weight: var(--font-weight-semibold);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 2px;
+}
+
+/* Icon wrapper */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Size Variants */
+.sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.875rem;
+}
+
+.md {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-base);
+}
+
+.lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: 1.125rem;
+}
+
+/* Primary Variant */
+.primary {
+  background: var(--color-red);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-xl);
+  min-width: 160px;
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--rose-900);
+}
+
+.primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Outlined Variant */
+.outlined {
+  background: white;
+  color: var(--rose-900);
+  border: 1px solid var(--rose-400);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  min-width: 160px;
+}
+
+.outlined:hover:not(:disabled) {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+/* Icon Variant (circular buttons for +/- controls) */
+.icon {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 50%;
+  color: white;
+}
+
+.icon:hover:not(:disabled) {
+  background: white;
+}
+
+/* Fix for icon visibility on hover - use filter to invert icon color */
+.icon:hover:not(:disabled) .icon img {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+/* Ghost Variant (transparent/minimal buttons) */
+.ghost {
+  background: transparent;
+  color: var(--rose-500);
+  border: 1px solid var(--rose-300);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--rose-100);
+  border-color: var(--rose-500);
+}
